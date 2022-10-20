@@ -1,6 +1,6 @@
 # Hyperpixel-LCARS
 
-LCARS on Pimoronis [Hyperpixel](https://shop.pimoroni.com/search?q=hyperpixel) written in Python3.
+LCARS on Pimoronis [Hyperpixel](https://shop.pimoroni.com/search?q=hyperpixel) - Hi-Res display for Raspberry Pi written in Python3.
 
 ## Table of Contents
 
