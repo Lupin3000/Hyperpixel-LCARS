@@ -4,9 +4,14 @@
 
 ## Table of Contents
 
+- [Note](#Note)
 - [Requirements](#Requirements)
 - [Installation](#Installation)
 - [Usage](#Usage)
+
+## Note
+
+> Please note that the fonts are only available for private use! You can adapt, improve and use the source code for your projects as you wish. The author of this repository take no responsibility for your use or misuse or any damage on your devices!
 
 ## Requirements
 
@@ -26,6 +31,9 @@ $ git clone https://github.com/Lupin3000/Hyperpixel-LCARS.git ~/
 ### Makefile
 
 ```shell
+# change into repository
+$ cd ~/Hyperpixel-LCARS/
+
 # Hyperpixel 4.0 rectangle
 $ make rectangle 
 
@@ -35,10 +43,6 @@ $ make round
 # Hyperpixel 4.0 square
 $ make square
 ```
-
-### Manual
-
-... t.b.d.
 
 ## Usage
 
