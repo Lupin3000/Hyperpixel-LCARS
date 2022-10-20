@@ -1,6 +1,6 @@
 # Hyperpixel-LCARS
 
-... t.b.d.
+LCARS on Pimoronis [Hyperpixel](https://shop.pimoroni.com/search?q=hyperpixel) written in Python3.
 
 ## Table of Contents
 
@@ -28,9 +28,7 @@ $ git clone https://github.com/Lupin3000/Hyperpixel-LCARS.git ~/
 
 ## Installation
 
-To make the installation a little easier for you, you can use the Makefile. If you want to do the installation by hand, take a look at the Makefile. All steps are explained there.
-
-### Makefile
+To make the installation a little easier for you, you can use the Makefile. If you want to do the installation by hand, take a look at the [Makefile](Makefile). All steps are explained there.
 
 ```shell
 # change into repository
@@ -39,13 +37,13 @@ $ cd ~/Hyperpixel-LCARS/
 # show Makefile (optional)
 $ cat Makefile
 
-# Hyperpixel 4.0 rectangle
+# install LCARS for Hyperpixel 4.0 rectangle
 $ make rectangle 
 
-# Hyperpixel 2.1 round
+# install LCARS for Hyperpixel 2.1 round
 $ make round
 
-# Hyperpixel 4.0 square
+# install LCARS for Hyperpixel 4.0 square
 $ make square
 ```
 
