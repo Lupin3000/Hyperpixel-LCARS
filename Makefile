@@ -9,17 +9,23 @@ help:
 rectangle:
 	@echo "[RUN]: Start installation for Hyperpixel 4.0 rectangle"
 	make install
-	# ...
+	@echo "[RUN]: Replace autostart variables"
+	# sed -i 's/DIR/hyperpixel-rectangle/g' ~/.config/autostart/lcars.desktop
+	# sed -i 's/FILE/lcars_rectangle.py/g' ~/.config/autostart/lcars.desktop
 
 round:
 	@echo "[RUN]: Start installation for Hyperpixel 2.1 round"
 	make install
-	# ...
+	@echo "[RUN]: Replace autostart variables"
+	# sed -i 's/DIR/hyperpixel-round/g' ~/.config/autostart/lcars.desktop
+	# sed -i 's/FILE/lcars_round.py/g' ~/.config/autostart/lcars.desktop
 
 square:
 	@echo "[RUN]: Start installation for Hyperpixel 4.0 square"
 	make install
-	# ...
+	@echo "[RUN]: Replace autostart variables"
+	# sed -i 's/DIR/hyperpixel-square/g' ~/.config/autostart/lcars.desktop
+	# sed -i 's/FILE/lcars_square.py/g' ~/.config/autostart/lcars.desktop
 
 install:
 	make deps
@@ -39,3 +45,4 @@ fonts:
 autostart:
 	@echo "[RUN]: Create autostart"
 	# mkdir -p ~/.config/autostart
+	# cp $(CURRENT_DIR)/src/tpl/lcars.desktop.template ~/.config/autostart/lcars.desktop

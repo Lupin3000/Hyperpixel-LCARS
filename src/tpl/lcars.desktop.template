@@ -1,4 +1,4 @@
 [Desktop Entry]
 Type=Application
 Name=LCARS
-Exec=/usr/bin/python3 ~/Hyperpixel-LCARS/{dir}/lcars_{file}.py
+Exec=/usr/bin/python3 ~/Hyperpixel-LCARS/DIR/FILE
