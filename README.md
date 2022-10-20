@@ -1,6 +1,6 @@
 # Hyperpixel-LCARS
 
-...
+... t.b.d.
 
 ## Table of Contents
 
@@ -28,11 +28,16 @@ $ git clone https://github.com/Lupin3000/Hyperpixel-LCARS.git ~/
 
 ## Installation
 
+To make the installation a little easier for you, you can use the Makefile. If you want to do the installation by hand, take a look at the Makefile. All steps are explained there.
+
 ### Makefile
 
 ```shell
 # change into repository
 $ cd ~/Hyperpixel-LCARS/
+
+# show Makefile (optional)
+$ cat Makefile
 
 # Hyperpixel 4.0 rectangle
 $ make rectangle 
