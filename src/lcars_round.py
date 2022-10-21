@@ -1,8 +1,8 @@
 import tkinter as tk
 import tkinter.font as tkf
 
-from lcars.weather import OpenWeather
-from lcars.system_metrics import HostMetrics, TimeMetrics
+from lcars.lcars_weather import OpenWeather
+from lcars.lcars_system_metrics import HostMetrics, TimeMetrics
 from lcars_base import LcarsBase
 
 
