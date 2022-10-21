@@ -1,42 +1,27 @@
 import tkinter as tk
 import tkinter.font as tkf
+from typing import Literal
 
 from PIL import Image, ImageTk
-from lcars.lcars_weather import OpenWeather
-from lcars.lcars_system_metrics import HostMetrics, TimeMetrics
-from src.lcars.lcars_app_base import LcarsBase
+
+from src.lcars.lcars_app_ui import LcarsUi
 
 
-class LcarsSquare(LcarsBase):
+class LcarsSquare(LcarsUi):
 
-    def __init__(self,
-                 fullscreen: bool = False) -> None:
-        super().__init__(title='LCARS SQUARE',
-                         resolution='720x720+0+0',
-                         fullscreen_mode=fullscreen,
-                         verbose_mode=3)
+    def __init__(self, fullscreen: bool = False, verbose: Literal[1, 2, 3] = 3) -> None:
+        super().__init__(w_width=720, w_height=720, w_title='SQUARE', w_fullscreen=fullscreen, w_verbose=verbose)
 
-        self.frame = None
         self.label_bg = None
         self.label_headline = None
-        self.label_date = None
-        self.label_host = None
-
-    def _create_frames(self) -> None:
-        background_color = '#000000'
-
-        self.frame = tk.Frame(self.window, bg=background_color, height=720, width=720)
-        self.frame.grid(column=0, row=0)
-        self.frame.rowconfigure(0, weight=1)
-        self.frame.columnconfigure(0, weight=1)
 
     def _add_widgets(self) -> None:
+        img_bg = Image.open('./img/square.png')
+        bg_bg = ImageTk.PhotoImage(img_bg)
+
         headline_color = '#FF7700'
         black_color = '#000000'
         blue_color = '#0080F4'
-
-        img_bg = Image.open('./img/square.png')
-        bg_bg = ImageTk.PhotoImage(img_bg)
 
         main_font = tkf.Font(family='Okuda', weight='normal', size=50)
 
@@ -56,17 +41,6 @@ class LcarsSquare(LcarsBase):
 
         self.window.after(10, self._update_widget)
 
-    def _update_widget(self, update_after: int = 60000) -> None:
-        super()._update_widget(update_after_milliseconds=int(update_after))
-
-        weather_metrics = OpenWeather()
-        print(weather_metrics.get_weather_metrics())
-
-        self.label_date.config(text=TimeMetrics())
-        self.label_host.config(text=HostMetrics())
-
-        self.window.after(int(update_after), self._update_widget)
-
 
 if __name__ == '__main__':
-    LcarsSquare()
+    LcarsSquare(fullscreen=False, verbose=3)

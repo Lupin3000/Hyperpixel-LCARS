@@ -1,6 +1,5 @@
 import logging
 import tkinter as tk
-from typing import Literal
 
 
 class LcarsBase:
@@ -8,23 +7,19 @@ class LcarsBase:
     base lcars class for tkinter application
     """
 
-    def __init__(self,
-                 title: str = 'LCARS',
-                 resolution: str = '720x720+0+0',
-                 fullscreen_mode: bool = False,
-                 verbose_mode: Literal[1, 2, 3] = 1) -> None:
+    def __init__(self, app_title: str, app_resolution: str, app_verbose: int, app_fullscreen: bool) -> None:
         """
         initialize tkinter application and start loop
-        :param title: set application title
-        :param resolution: set application resolution
-        :param fullscreen_mode: set application fullscreen mode (True or False)
-        :param verbose_mode: set application log level (3 = Debug, 2 = Info, 1 = Error)
+        :param app_title: set application title
+        :param app_resolution: set application resolution
+        :param app_fullscreen: set application fullscreen mode (True or False)
+        :param app_verbose: set application log level (3 = Debug, 2 = Info, 1 = Error)
         """
-        if verbose_mode == 3:
+        if app_verbose == 3:
             logging.basicConfig(level=logging.DEBUG,
                                 format='%(asctime)s - %(levelname)s - %(message)s',
                                 datefmt='%m/%d/%Y %I:%M:%S %p')
-        elif verbose_mode == 2:
+        elif app_verbose == 2:
             logging.basicConfig(level=logging.INFO,
                                 format='%(asctime)s - %(levelname)s - %(message)s',
                                 datefmt='%m/%d/%Y %I:%M:%S %p')
@@ -36,29 +31,26 @@ class LcarsBase:
         self.__logger = logging.getLogger(__name__)
 
         self.window = tk.Tk()
-        self._config_window(win_title=title, win_resolution=resolution, win_fullscreen=fullscreen_mode)
+        self._config_window(title=app_title, resolution=app_resolution, fullscreen=app_fullscreen)
         self._create_frames()
         self._add_widgets()
 
         self.window.mainloop()
 
-    def _config_window(self,
-                       win_title: str,
-                       win_resolution: str,
-                       win_fullscreen: bool) -> None:
+    def _config_window(self, title: str, resolution: str, fullscreen: bool) -> None:
         """
         configure tkinter window
-        :param win_title: window title
-        :param win_resolution: window resolution
-        :param win_fullscreen: window fullscreen
+        :param title: window title
+        :param resolution: window resolution
+        :param fullscreen: window fullscreen
         :return: None
         """
-        self.__logger.debug(f"app title: {win_title}, resolution: {win_resolution}, fullscreen: {win_fullscreen}")
+        self.__logger.debug(f"app title: {title}, resolution: {resolution}, fullscreen: {fullscreen}")
 
         background_color = '#000000'
 
-        self.window.title(str(win_title))
-        self.window.geometry(str(win_resolution))
+        self.window.title(str(title))
+        self.window.geometry(str(resolution))
         self.window.resizable(width=tk.FALSE, height=tk.FALSE)
         self.window.config(bg=background_color)
 
@@ -68,7 +60,7 @@ class LcarsBase:
         self.window.protocol('WM_DELETE_WINDOW', self._on_closing)
         self.window.bind('<Escape>', self._exit)
 
-        if bool(win_fullscreen):
+        if bool(fullscreen):
             self.window.config(cursor='none')
             self.window.attributes("-fullscreen", True)
         else:
@@ -88,8 +80,7 @@ class LcarsBase:
         """
         pass
 
-    def _update_widget(self,
-                       update_after_milliseconds: int = 60000) -> None:
+    def _update_widget(self, update_after_milliseconds: int = 60000) -> None:
         """
         update tkinter widgets
         :param update_after_milliseconds: update tkinter widget
