@@ -4,6 +4,9 @@ import requests
 
 
 class OpenWeather:
+    """
+    module class for Openweathermap.org API
+    """
 
     def __init__(self,
                  apikey: str,
