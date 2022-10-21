@@ -1,7 +1,8 @@
-import time
 import tkinter as tk
 import tkinter.font as tkf
 
+from lcars.weather import OpenWeather
+from lcars.system_metrics import HostMetrics, TimeMetrics
 from lcars_base import LcarsBase
 
 
@@ -15,8 +16,10 @@ class LcarsRound(LcarsBase):
                          verbose_mode=3)
 
         self.frame = None
+        self.label_bg = None
         self.label_headline = None
         self.label_date = None
+        self.label_host = None
 
     def _create_frames(self) -> None:
         background_color = '#000000'
@@ -39,14 +42,19 @@ class LcarsRound(LcarsBase):
         self.label_date = tk.Label(self.frame, font=main_font, bg=blue_color, fg=black_color, text='')
         self.label_date.place(anchor=tk.CENTER, relx=.5, rely=.7)
 
+        self.label_host = tk.Label(self.frame, font=main_font, bg=black_color, fg=blue_color, text='')
+        self.label_host.place(anchor=tk.CENTER, relx=.85, rely=.45)
+
         self.window.after(10, self._update_widget)
 
     def _update_widget(self, update_after: int = 60000) -> None:
         super()._update_widget(update_after_milliseconds=int(update_after))
 
-        current_date = f"{time.strftime('%d')}-{time.strftime('%m')}{time.strftime('%Y')}"
+        weather_metrics = OpenWeather()
+        print(weather_metrics.get_weather_metrics())
 
-        self.label_date.config(text=current_date)
+        self.label_date.config(text=TimeMetrics())
+        self.label_host.config(text=HostMetrics())
 
         self.window.after(int(update_after), self._update_widget)
 

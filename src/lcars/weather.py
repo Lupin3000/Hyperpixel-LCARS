@@ -1,11 +1,12 @@
+import configparser
 from typing import Literal
 
 import requests
 
 
-class OpenWeather:
+class OpenWeatherAPI:
     """
-    module class for Openweathermap.org API
+    module class for request to Openweathermap.org API
     """
 
     def __init__(self,
@@ -63,7 +64,7 @@ class OpenWeather:
 
         if response.status_code == 200 and 'application/json' in response.headers.get('Content-Type'):
             json_response = response.json()
-            units = OpenWeather.__get_measurement_units(self.measurement)
+            units = OpenWeatherAPI.__get_measurement_units(self.measurement)
 
             res_temperature = f"{json_response['main']['temp']} {units[0]}"
             res_pressure = f"{json_response['main']['pressure']} hPa"
@@ -73,3 +74,33 @@ class OpenWeather:
             weather.update(temperature=res_temperature, pressure=res_pressure, humidity=res_humidity, wind=res_wind)
 
         return weather
+
+
+class OpenWeather:
+    """
+    module class for Openweathermap.org values from config file
+    """
+
+    def __init__(self) -> None:
+        """
+        initialize class
+        """
+        config = configparser.ConfigParser()
+        config.read('../config.ini')
+
+        self.apikey = str(config['openweathermap.org']['apikey'])
+        self.zipcode = int(config['openweathermap.org']['zipcode'])
+        self.countrycode = str(config['openweathermap.org']['countrycode'])
+        self.measurement = config['openweathermap.org']['measurement']
+
+    def get_weather_metrics(self) -> dict:
+        """
+        call OpenWeatherAPI class
+        :return: dictionary of weather metrics
+        """
+        weather = OpenWeatherAPI(apikey=self.apikey,
+                                 zipcode=self.zipcode,
+                                 countrycode=self.countrycode,
+                                 measurement='metric')
+
+        return weather.get_values()
