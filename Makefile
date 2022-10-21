@@ -8,38 +8,29 @@ help:
 
 rectangle:
 	@echo "[RUN]: Start installation for Hyperpixel 4.0 rectangle"
-	make install
+	make deps
 	@echo "[RUN]: Replace autostart variables"
-	# sed -i 's/FILE/lcars_rectangle.py/g' ~/.config/autostart/lcars.desktop
+	sed -i 's/FILE/lcars_rectangle.py/g' ~/.config/autostart/lcars.desktop
 
 round:
 	@echo "[RUN]: Start installation for Hyperpixel 2.1 round"
-	make install
+	make deps
 	@echo "[RUN]: Replace autostart variables"
-	# sed -i 's/FILE/lcars_round.py/g' ~/.config/autostart/lcars.desktop
+	sed -i 's/FILE/lcars_round.py/g' ~/.config/autostart/lcars.desktop
 
 square:
 	@echo "[RUN]: Start installation for Hyperpixel 4.0 square"
-	make install
-	@echo "[RUN]: Replace autostart variables"
-	# sed -i 's/FILE/lcars_square.py/g' ~/.config/autostart/lcars.desktop
-
-install:
 	make deps
-	make fonts
-	make autostart
+	@echo "[RUN]: Replace autostart variables"
+	sed -i 's/FILE/lcars_square.py/g' ~/.config/autostart/lcars.desktop
 
 deps:
 	@echo "[RUN]: Install dependencies"
 	# sudo apt install -y python3-pil python3-pil.imagetk
 	pip install -r $(CURRENT_DIR)/requirements.txt
-
-fonts:
 	@echo "[RUN]: Install fonts"
-	# mkdir ~/.fonts/
-	# cp $(CURRENT_DIR)/fonts/*.ttf ~/.fonts/
-
-autostart:
+	mkdir -p ~/.fonts
+	cp $(CURRENT_DIR)/fonts/*.ttf ~/.fonts/
 	@echo "[RUN]: Create autostart"
-	# mkdir -p ~/.config/autostart
-	# cp $(CURRENT_DIR)/src/tpl/lcars.desktop.template ~/.config/autostart/lcars.desktop
+	mkdir -p ~/.config/autostart
+	cp $(CURRENT_DIR)/src/tpl/lcars.desktop.template ~/.config/autostart/lcars.desktop
