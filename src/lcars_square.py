@@ -4,7 +4,7 @@ import tkinter.font as tkf
 from PIL import Image, ImageTk
 from lcars.lcars_weather import OpenWeather
 from lcars.lcars_system_metrics import HostMetrics, TimeMetrics
-from lcars_base import LcarsBase
+from src.lcars.lcars_app_base import LcarsBase
 
 
 class LcarsSquare(LcarsBase):
