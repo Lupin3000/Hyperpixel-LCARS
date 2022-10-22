@@ -1,5 +1,6 @@
 import socket
 import time
+import psutil
 
 
 class HostMetrics:
@@ -11,7 +12,7 @@ class HostMetrics:
         """
         initialize module class for hostname
         """
-        self.hostname = str(socket.gethostname())
+        self.hostname = f"{socket.gethostname()}"
 
     def __str__(self) -> str:
         """
@@ -30,7 +31,7 @@ class TimeMetrics:
         """
         initialize module class for time
         """
-        self.current_date = str(time.strftime('%d-%m%Y'))
+        self.current_date = f"{time.strftime('%d-%m%Y')}"
 
     def __str__(self) -> str:
         """
@@ -38,3 +39,20 @@ class TimeMetrics:
         :return: str
         """
         return self.current_date
+
+
+class RamMetrics:
+
+    def __init__(self) -> None:
+        """
+        initialize module class for ram
+        """
+        ram = psutil.virtual_memory()
+        self.info = f"{ram.total >> 30}-{ram.available >> 30}{ram.used >> 30}{ram.free >> 30}"
+
+    def __str__(self) -> str:
+        """
+        return string of ram (in specific format)
+        :return: str
+        """
+        return self.info
