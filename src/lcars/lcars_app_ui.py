@@ -1,7 +1,8 @@
 import tkinter as tk
+import tkinter.font as tkf
 
 from src.lcars.lcars_app_base import LcarsBase
-from src.lcars.lcars_system_metrics import HostMetrics, TimeMetrics
+from src.lcars.lcars_system_metrics import HostMetrics, TimeMetrics, RamMetrics, PlatformMetrics
 from src.lcars.lcars_weather import OpenWeather
 
 
@@ -12,8 +13,12 @@ class LcarsUi(LcarsBase):
         self.frame_width = int(w_width)
         self.frame_height = int(w_height)
 
+        self.fonts = None
+
         self.label_date = None
         self.label_host = None
+        self.label_ram = None
+        self.label_os = None
 
         super().__init__(app_title=f"LCARS {str(w_title)}",
                          app_resolution=f"{int(w_width)}x{int(w_height)}+0+0",
@@ -34,6 +39,13 @@ class LcarsUi(LcarsBase):
         self.frame.rowconfigure(0, weight=1)
         self.frame.columnconfigure(0, weight=1)
 
+    def _set_fonts(self, headline: int, paragraph: int, sidebar: int) -> None:
+        self.fonts = {
+            'headline_font': tkf.Font(family='Okuda', weight='normal', size=int(headline)),
+            'paragraph_font': tkf.Font(family='Okuda', weight='normal', size=int(paragraph)),
+            'side_bar_font': tkf.Font(family='Okuda', weight='normal', size=int(sidebar))
+        }
+
     def _update_widget(self, update_after: int = 60000) -> None:
         super()._update_widget(update_after_milliseconds=int(update_after))
 
@@ -42,5 +54,7 @@ class LcarsUi(LcarsBase):
 
         self.label_date.config(text=TimeMetrics())
         self.label_host.config(text=HostMetrics())
+        self.label_ram.config(text=RamMetrics())
+        self.label_os.config(text=PlatformMetrics())
 
         self.window.after(int(update_after), self._update_widget)

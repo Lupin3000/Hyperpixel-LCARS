@@ -1,13 +1,15 @@
+import platform
 import socket
 import time
+
 import psutil
+
+"""
+Helper classes to get some system metrics (some in specific format)
+"""
 
 
 class HostMetrics:
-    """
-    module class to get hostname
-    """
-
     def __init__(self) -> None:
         """
         initialize module class for hostname
@@ -23,9 +25,6 @@ class HostMetrics:
 
 
 class TimeMetrics:
-    """
-    module class to get time
-    """
 
     def __init__(self) -> None:
         """
@@ -56,3 +55,18 @@ class RamMetrics:
         :return: str
         """
         return self.info
+
+
+class PlatformMetrics:
+    def __init__(self) -> None:
+        """
+        initialize module class for platform name
+        """
+        self.osname = f"{platform.uname().system}"
+
+    def __str__(self) -> str:
+        """
+        return string of os name
+        :return: str
+        """
+        return self.osname
