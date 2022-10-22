@@ -1,5 +1,7 @@
 CURRENT_DIR := $(shell pwd)
 
+.PHONY: deps
+
 help:
 	@echo "Usage: $ make <target>"
 	@echo " > rectangle : installation for hyperpixel 4.0 rectangle"
@@ -26,11 +28,13 @@ square:
 
 deps:
 	@echo "[RUN]: Install dependencies"
-	# sudo apt install -y python3-pil python3-pil.imagetk
+	sudo apt install -y python3-pil python3-pil.imagetk
 	pip install -r $(CURRENT_DIR)/requirements.txt
 	@echo "[RUN]: Install fonts"
 	mkdir -p ~/.fonts
 	cp $(CURRENT_DIR)/fonts/*.ttf ~/.fonts/
 	@echo "[RUN]: Create autostart"
+	@echo Information: create autostart\; continue? [Y/n]
+	@read line; if [ $$line = "n" ]; then echo aborting; exit 1 ; fi
 	mkdir -p ~/.config/autostart
 	cp $(CURRENT_DIR)/src/tpl/lcars.desktop.template ~/.config/autostart/lcars.desktop

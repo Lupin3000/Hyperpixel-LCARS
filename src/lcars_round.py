@@ -14,10 +14,28 @@ class LcarsRound(LcarsUi):
         self._set_colors(headline='#FF7700', blue='#0080F4')
         self._set_background(image_path='./img/round.png')
 
+        # top
+        self.label_temperature = tk.Label(self.frames, font=self.fonts['paragraph'], fg=self.colors['blue'],
+                                          bg=self.colors['black'])
+        self.label_temperature.place(anchor=tk.CENTER, relx=.35, rely=.4)
+
+        self.label_pressure = tk.Label(self.frames, font=self.fonts['paragraph'], fg=self.colors['blue'],
+                                       bg=self.colors['black'])
+        self.label_pressure.place(anchor=tk.CENTER, relx=.5, rely=.4)
+
+        self.label_humidity = tk.Label(self.frames, font=self.fonts['paragraph'], fg=self.colors['blue'],
+                                       bg=self.colors['black'])
+        self.label_humidity.place(anchor=tk.CENTER, relx=.65, rely=.4)
+
+        self.label_wind = tk.Label(self.frames, font=self.fonts['paragraph'], fg=self.colors['blue'],
+                                   bg=self.colors['black'])
+        self.label_wind.place(anchor=tk.CENTER, relx=.8, rely=.4)
+
         self.label_os = tk.Label(self.frames, font=self.fonts['headline'], fg=self.colors['headline'],
                                  bg=self.colors['black'])
         self.label_os.place(anchor=tk.CENTER, relx=.85, rely=.1)
 
+        # side bar
         self.label_ram = tk.Label(self.frames, font=self.fonts['side_bar'], fg=self.colors['black'],
                                   bg=self.colors['red'])
         self.label_ram.place(anchor=tk.CENTER, relx=.185, rely=.6)
@@ -26,10 +44,12 @@ class LcarsRound(LcarsUi):
                                    bg=self.colors['blue'])
         self.label_date.place(anchor=tk.CENTER, relx=.185, rely=.72)
 
+        # bottom
         self.label_host = tk.Label(self.frames, font=self.fonts['headline'], fg=self.colors['blue'],
                                    bg=self.colors['black'])
         self.label_host.place(anchor=tk.CENTER, relx=.45, rely=.275)
 
+        # reload
         self.window.after(10, self._update_widget)
 
 
