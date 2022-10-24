@@ -1,7 +1,12 @@
+import os
 import tkinter as tk
-from typing import Literal
 
-from src.lcars.lcars_app_ui import LcarsUi
+try:
+    from typing import Literal
+except ImportError:
+    from typing_extensions import Literal
+
+from lcars.lcars_app_ui import LcarsUi
 
 
 class LcarsRound(LcarsUi):
@@ -12,7 +17,10 @@ class LcarsRound(LcarsUi):
     def _add_widgets(self) -> None:
         self._set_fonts(headline=40, paragraph_top=25, time=100, paragraph_bottom=25, sidebar=25)
         self._set_colors(headline='#FF7700', blue='#0080F4')
-        self._set_background(image_path='./img/round.png')
+
+        dirname = os.path.dirname(__file__)
+        filename = os.path.join(dirname, 'img/round.png')
+        self._set_background(image_path=filename)
 
         # top
         label_txt_outside = tk.Label(self.frames, font=self.fonts['headline'], text='Outside',

@@ -1,5 +1,10 @@
 import configparser
-from typing import Literal
+import os
+
+try:
+    from typing import Literal
+except ImportError:
+    from typing_extensions import Literal
 
 import requests
 
@@ -86,7 +91,9 @@ class OpenWeather:
         initialize class
         """
         config = configparser.ConfigParser()
-        config.read('../config.ini')
+        dirname = os.path.dirname(__file__)
+        filename = os.path.join(dirname, '../../config.ini')
+        config.read(filename)
 
         self.apikey = str(config['openweathermap.org']['apikey'])
         self.zipcode = int(config['openweathermap.org']['zipcode'])

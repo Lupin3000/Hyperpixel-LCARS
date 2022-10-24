@@ -1,10 +1,10 @@
 import tkinter as tk
 import tkinter.font as tkf
-from PIL import Image, ImageTk
 
-from src.lcars.lcars_app_base import LcarsBase
-from src.lcars.lcars_system_metrics import HostMetrics, DateMetrics, TimeMetrics, RamMetrics, PlatformMetrics
-from src.lcars.lcars_weather import OpenWeather
+from PIL import Image, ImageTk
+from lcars.lcars_app_base import LcarsBase
+from lcars.lcars_system_metrics import HostMetrics, DateMetrics, TimeMetrics, RamMetrics, PlatformMetrics
+from lcars.lcars_weather import OpenWeather
 
 
 class LcarsUi(LcarsBase):

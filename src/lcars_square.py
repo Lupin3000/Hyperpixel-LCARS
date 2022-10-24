@@ -1,7 +1,12 @@
+import os
 import tkinter as tk
-from typing import Literal
 
-from src.lcars.lcars_app_ui import LcarsUi
+try:
+    from typing import Literal
+except ImportError:
+    from typing_extensions import Literal
+
+from lcars.lcars_app_ui import LcarsUi
 
 
 class LcarsSquare(LcarsUi):
@@ -12,7 +17,10 @@ class LcarsSquare(LcarsUi):
     def _add_widgets(self) -> None:
         self._set_fonts(headline=50, paragraph_top=50, time=200, paragraph_bottom=30, sidebar=25)
         self._set_colors(headline='#FF7700', blue='#0080F4')
-        self._set_background(image_path='./img/square.png')
+
+        dirname = os.path.dirname(__file__)
+        filename = os.path.join(dirname, 'img/square.png')
+        self._set_background(image_path=filename)
 
         # top
         label_txt_outside = tk.Label(self.frames, font=self.fonts['headline'], text='Outside',
