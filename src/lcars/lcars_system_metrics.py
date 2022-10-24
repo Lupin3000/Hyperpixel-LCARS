@@ -24,20 +24,36 @@ class HostMetrics:
         return self.hostname
 
 
+class DateMetrics:
+
+    def __init__(self) -> None:
+        """
+        initialize module class for date
+        """
+        self.current_date = f"{time.strftime('%d-%m-%Y')}"
+
+    def __str__(self) -> str:
+        """
+        return string of date (in specific format)
+        :return: str
+        """
+        return self.current_date
+
+
 class TimeMetrics:
 
     def __init__(self) -> None:
         """
         initialize module class for time
         """
-        self.current_date = f"{time.strftime('%d-%m%Y')}"
+        self.current_time = f"{time.strftime('%H-%M')}"
 
     def __str__(self) -> str:
         """
         return string of time (in specific format)
         :return: str
         """
-        return self.current_date
+        return self.current_time
 
 
 class RamMetrics:
@@ -47,7 +63,7 @@ class RamMetrics:
         initialize module class for ram
         """
         ram = psutil.virtual_memory()
-        self.info = f"{ram.total >> 30}-{ram.available >> 30}{ram.used >> 30}{ram.free >> 30}"
+        self.info = f"{ram.total >> 30}-{ram.available >> 30}{ram.used >> 30}-{ram.free >> 30}"
 
     def __str__(self) -> str:
         """

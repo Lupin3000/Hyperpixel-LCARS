@@ -3,7 +3,7 @@ import tkinter.font as tkf
 from PIL import Image, ImageTk
 
 from src.lcars.lcars_app_base import LcarsBase
-from src.lcars.lcars_system_metrics import HostMetrics, TimeMetrics, RamMetrics, PlatformMetrics
+from src.lcars.lcars_system_metrics import HostMetrics, DateMetrics, TimeMetrics, RamMetrics, PlatformMetrics
 from src.lcars.lcars_weather import OpenWeather
 
 
@@ -25,6 +25,7 @@ class LcarsUi(LcarsBase):
         self.fonts = None
         self.colors = None
 
+        self.label_time = None
         self.label_date = None
         self.label_host = None
         self.label_ram = None
@@ -54,17 +55,21 @@ class LcarsUi(LcarsBase):
         self.frames.rowconfigure(0, weight=1)
         self.frames.columnconfigure(0, weight=1)
 
-    def _set_fonts(self, headline: int, paragraph: int, sidebar: int) -> None:
+    def _set_fonts(self, headline: int, paragraph_top: int, time: int, paragraph_bottom: int, sidebar: int) -> None:
         """
         create dictionary of font styles settings for arguments
         :param headline: set headline
-        :param paragraph: set paragraph as tkf.Font
+        :param paragraph_top: set paragraph as tkf.Font
+        :param time: set time as tkf.Font
+        :param paragraph_bottom: set paragraph as tkf.Font
         :param sidebar: set sidebar as tkf.Font
         :return: None
         """
         self.fonts = {
             'headline': tkf.Font(family='Okuda', weight='normal', size=int(headline)),
-            'paragraph': tkf.Font(family='Okuda', weight='normal', size=int(paragraph)),
+            'paragraph_top': tkf.Font(family='Okuda', weight='normal', size=int(paragraph_top)),
+            'time': tkf.Font(family='Okuda', weight='normal', size=int(time)),
+            'paragraph_bottom': tkf.Font(family='Okuda', weight='normal', size=int(paragraph_bottom)),
             'side_bar': tkf.Font(family='Okuda', weight='normal', size=int(sidebar))
         }
 
@@ -121,7 +126,8 @@ class LcarsUi(LcarsBase):
         self.label_humidity.config(text=f"H: {weather_measures['humidity']}")
         self.label_wind.config(text=f"W: {weather_measures['wind']}")
 
-        self.label_date.config(text=TimeMetrics())
+        self.label_time.config(text=TimeMetrics())
+        self.label_date.config(text=DateMetrics())
         self.label_host.config(text=HostMetrics())
         self.label_ram.config(text=RamMetrics())
         self.label_os.config(text=PlatformMetrics())
