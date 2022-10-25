@@ -1,4 +1,4 @@
 [Desktop Entry]
 Type=Application
 Name=LCARS
-Exec=/usr/bin/python3 ~/Hyperpixel-LCARS/src/FILE
+Exec=/usr/bin/python3 /home/pi/Hyperpixel-LCARS/src/FILE
