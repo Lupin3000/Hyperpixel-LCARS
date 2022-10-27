@@ -18,12 +18,12 @@ class LcarsUi(LcarsBase):
         :param w_verbose: set window verbose log level (3 = Debug, 2 = Info, 1 = Error)
         :param w_fullscreen: set window fullscreen mode (True or False)
         """
-        self.frames = None
-        self.frame_width = int(w_width)
-        self.frame_height = int(w_height)
+        self.window_width = int(w_width)
+        self.window_height = int(w_height)
 
-        self.fonts = None
-        self.colors = None
+        self.frames = dict()
+        self.fonts = dict()
+        self.colors = dict()
 
         self.label_time = None
         self.label_date = None
@@ -41,19 +41,20 @@ class LcarsUi(LcarsBase):
                          app_verbose=w_verbose,
                          app_fullscreen=bool(w_fullscreen))
 
-    def _create_frames(self) -> None:
+    def _add_frames(self, count: int = 1) -> None:
         """
         create all frames inside application window
+        :param count: frames to create as int
         :return: None
         """
-        self.frames = tk.Frame(self.window,
-                               bg=self._DEFAULT_BACKGROUND_COLOR,
-                               height=self.frame_height,
-                               width=self.frame_width)
+        self.logger.debug(f"app > create {count} frames")
 
-        self.frames.grid(column=0, row=0)
-        self.frames.rowconfigure(0, weight=1)
-        self.frames.columnconfigure(0, weight=1)
+        for num in range(count):
+            self.frames[num] = tk.Frame(self.window, bg=self._DEFAULT_BACKGROUND_COLOR)
+            self.frames[num].rowconfigure(0, weight=1)
+            self.frames[num].columnconfigure(0, weight=1)
+
+        self.frames[0].grid(column=0, row=0)
 
     def _set_fonts(self, headline: int, paragraph_top: int, time: int, paragraph_bottom: int, sidebar: int) -> None:
         """
@@ -65,6 +66,8 @@ class LcarsUi(LcarsBase):
         :param sidebar: set sidebar as tkf.Font
         :return: None
         """
+        self.logger.debug(f"app > set fonts")
+
         self.fonts = {
             'headline': tkf.Font(family='Okuda', weight='normal', size=int(headline)),
             'paragraph_top': tkf.Font(family='Okuda', weight='normal', size=int(paragraph_top)),
@@ -87,6 +90,8 @@ class LcarsUi(LcarsBase):
         :param blue: set HEX color code for base color
         :return: None
         """
+        self.logger.debug(f"app > set colors")
+
         self.colors = {
             'headline': str(headline),
             'paragraph': str(paragraph),
@@ -99,14 +104,16 @@ class LcarsUi(LcarsBase):
 
     def _set_background(self, image_path: str) -> None:
         """
-        set background image and place as label
+        set background image to frames[0] and place as label
         :param image_path: path to image as string
         :return: None
         """
+        self.logger.debug(f"app > set background image")
+
         img_bg = Image.open(str(image_path))
         bg_bg = ImageTk.PhotoImage(img_bg)
 
-        label_bg = tk.Label(self.frames, image=bg_bg, bg=self.colors['black'])
+        label_bg = tk.Label(self.frames[0], image=bg_bg, bg=self.colors['black'])
         label_bg.image = bg_bg
         label_bg.grid(column=0, row=0)
 
@@ -116,7 +123,7 @@ class LcarsUi(LcarsBase):
         :param update_after: time in milliseconds as int
         :return: None
         """
-        super()._update_widget(update_after_milliseconds=int(update_after))
+        self.logger.debug(f"app > update widgets")
 
         weather_metrics = OpenWeather()
         weather_measures = weather_metrics.get_weather_metrics()

@@ -23,44 +23,44 @@ class LcarsSquare(LcarsUi):
         self._set_background(image_path=filename)
 
         # top
-        label_txt_outside = tk.Label(self.frames, font=self.fonts['headline'], text='Outside',
+        label_txt_outside = tk.Label(self.frames[0], font=self.fonts['headline'], text='Outside',
                                      fg=self.colors['headline'], bg=self.colors['black'])
         label_txt_outside.place(anchor=tk.CENTER, relx=.9, rely=.05)
 
-        self.label_temperature = tk.Label(self.frames, font=self.fonts['paragraph_top'], fg=self.colors['blue'],
+        self.label_temperature = tk.Label(self.frames[0], font=self.fonts['paragraph_top'], fg=self.colors['blue'],
                                           bg=self.colors['black'])
         self.label_temperature.place(anchor=tk.CENTER, relx=.45, rely=.15)
 
-        self.label_pressure = tk.Label(self.frames, font=self.fonts['paragraph_top'], fg=self.colors['blue'],
+        self.label_pressure = tk.Label(self.frames[0], font=self.fonts['paragraph_top'], fg=self.colors['blue'],
                                        bg=self.colors['black'])
         self.label_pressure.place(anchor=tk.CENTER, relx=.45, rely=.25)
 
-        self.label_humidity = tk.Label(self.frames, font=self.fonts['paragraph_top'], fg=self.colors['blue'],
+        self.label_humidity = tk.Label(self.frames[0], font=self.fonts['paragraph_top'], fg=self.colors['blue'],
                                        bg=self.colors['black'])
         self.label_humidity.place(anchor=tk.CENTER, relx=.8, rely=.25)
 
-        self.label_wind = tk.Label(self.frames, font=self.fonts['paragraph_top'], fg=self.colors['blue'],
+        self.label_wind = tk.Label(self.frames[0], font=self.fonts['paragraph_top'], fg=self.colors['blue'],
                                    bg=self.colors['black'])
         self.label_wind.place(anchor=tk.CENTER, relx=.8, rely=.15)
 
         # bottom
-        self.label_os = tk.Label(self.frames, font=self.fonts['headline'], fg=self.colors['headline'],
+        self.label_os = tk.Label(self.frames[0], font=self.fonts['headline'], fg=self.colors['headline'],
                                  bg=self.colors['black'])
         self.label_os.place(anchor=tk.CENTER, relx=.9, rely=.5)
 
-        self.label_host = tk.Label(self.frames, font=self.fonts['paragraph_bottom'], fg=self.colors['blue'],
+        self.label_host = tk.Label(self.frames[0], font=self.fonts['paragraph_bottom'], fg=self.colors['blue'],
                                    bg=self.colors['black'])
         self.label_host.place(anchor=tk.CENTER, relx=.4, rely=.9)
 
-        self.label_time = tk.Label(self.frames, font=self.fonts['time'], fg=self.colors['blue'],
+        self.label_time = tk.Label(self.frames[0], font=self.fonts['time'], fg=self.colors['blue'],
                                    bg=self.colors['black'])
         self.label_time.place(anchor=tk.CENTER, relx=.6, rely=.65)
 
-        self.label_date = tk.Label(self.frames, font=self.fonts['paragraph_bottom'], fg=self.colors['blue'],
+        self.label_date = tk.Label(self.frames[0], font=self.fonts['paragraph_bottom'], fg=self.colors['blue'],
                                    bg=self.colors['black'])
         self.label_date.place(anchor=tk.CENTER, relx=.6, rely=.9)
 
-        self.label_ram = tk.Label(self.frames, font=self.fonts['paragraph_bottom'], fg=self.colors['blue'],
+        self.label_ram = tk.Label(self.frames[0], font=self.fonts['paragraph_bottom'], fg=self.colors['blue'],
                                   bg=self.colors['black'])
         self.label_ram.place(anchor=tk.CENTER, relx=.8, rely=.9)
 
@@ -69,4 +69,4 @@ class LcarsSquare(LcarsUi):
 
 
 if __name__ == '__main__':
-    LcarsSquare(fullscreen=False, verbose=2)
+    LcarsSquare(fullscreen=False, verbose=3)
