@@ -50,7 +50,7 @@ class LcarsBase:
         :param fullscreen: window fullscreen
         :return: None
         """
-        self.logger.debug(f"app > title: {title}, resolution: {resolution}, fullscreen: {fullscreen}")
+        self.logger.debug(f"app > config window title: {title}, resolution: {resolution}, fullscreen: {fullscreen}")
 
         self.window.title(str(title))
         self.window.geometry(str(resolution))

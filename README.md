@@ -20,7 +20,7 @@ LCARS on Pimoronis [Hyperpixel](https://shop.pimoroni.com/search?q=hyperpixel) -
 $ sudo apt update && sudo apt upgrade -y
 
 # install packages
-$ sudo apt install -y build-essential git python3 python3-pip
+$ sudo apt install -y build-essential vim git python3 python3-pip
 
 # clone repository into home directory
 $ git clone https://github.com/Lupin3000/Hyperpixel-LCARS.git ~/
@@ -49,4 +49,31 @@ $ make square
 
 ## Usage
 
-... t.b.d.
+### Configuration
+
+> Modify api settings inside file `config.ini` before reboot!
+
+```shell
+# modify file
+$ vim ~/Hyperpixel-LCARS/config.ini
+```
+
+You need a valid API KEY from [openweathermap.org](https://openweathermap.org/api).
+
+```config.ini
+[openweathermap.org]
+apikey = abc123def456ghi789
+zipcode = 8405
+countrycode = CH
+measurement = metric
+```
+
+### Autostart
+
+If your application don't start automatically after reboot, verify correct fullpath to target.
+
+```shell
+# show specific settings
+$ cat ~/.config/autostart/lcars.desktop | grep -i 'Exec*'
+Exec=/usr/bin/python3 /home/pi/Hyperpixel-LCARS/src/FILE
+```

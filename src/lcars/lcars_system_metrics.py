@@ -9,19 +9,14 @@ Helper classes to get some system metrics (some in specific format)
 """
 
 
-class HostMetrics:
+class SystemMetrics:
     def __init__(self) -> None:
         """
-        initialize module class for hostname
+        initialize module class for system metrics
         """
         self.hostname = f"{socket.gethostname()}"
-
-    def __str__(self) -> str:
-        """
-        return string of hostname
-        :return: str
-        """
-        return self.hostname
+        self.os = f"{platform.uname().system}"
+        self.ram = f"{psutil.virtual_memory().total >> 20}"
 
 
 class DateMetrics:
@@ -54,35 +49,3 @@ class TimeMetrics:
         :return: str
         """
         return self.current_time
-
-
-class RamMetrics:
-
-    def __init__(self) -> None:
-        """
-        initialize module class for ram
-        """
-        ram = psutil.virtual_memory()
-        self.info = f"{ram.total >> 30}-{ram.available >> 30}{ram.used >> 30}-{ram.free >> 30}"
-
-    def __str__(self) -> str:
-        """
-        return string of ram (in specific format)
-        :return: str
-        """
-        return self.info
-
-
-class PlatformMetrics:
-    def __init__(self) -> None:
-        """
-        initialize module class for platform name
-        """
-        self.osname = f"{platform.uname().system}"
-
-    def __str__(self) -> str:
-        """
-        return string of os name
-        :return: str
-        """
-        return self.osname

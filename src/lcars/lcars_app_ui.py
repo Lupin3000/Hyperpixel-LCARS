@@ -3,7 +3,7 @@ import tkinter.font as tkf
 
 from PIL import Image, ImageTk
 from lcars.lcars_app_base import LcarsBase
-from lcars.lcars_system_metrics import HostMetrics, DateMetrics, TimeMetrics, RamMetrics, PlatformMetrics
+from lcars.lcars_system_metrics import SystemMetrics, DateMetrics, TimeMetrics
 from lcars.lcars_weather import OpenWeather
 
 
@@ -18,9 +18,6 @@ class LcarsUi(LcarsBase):
         :param w_verbose: set window verbose log level (3 = Debug, 2 = Info, 1 = Error)
         :param w_fullscreen: set window fullscreen mode (True or False)
         """
-        self.window_width = int(w_width)
-        self.window_height = int(w_height)
-
         self.frames = dict()
         self.fonts = dict()
         self.colors = dict()
@@ -43,7 +40,7 @@ class LcarsUi(LcarsBase):
 
     def _add_frames(self, count: int = 1) -> None:
         """
-        create all frames inside application window
+        create all frames as dictionary inside application window
         :param count: frames to create as int
         :return: None
         """
@@ -135,8 +132,8 @@ class LcarsUi(LcarsBase):
 
         self.label_time.config(text=TimeMetrics())
         self.label_date.config(text=DateMetrics())
-        self.label_host.config(text=HostMetrics())
-        self.label_ram.config(text=RamMetrics())
-        self.label_os.config(text=PlatformMetrics())
+        self.label_host.config(text=SystemMetrics().hostname)
+        self.label_ram.config(text=SystemMetrics().ram)
+        self.label_os.config(text=SystemMetrics().os)
 
         self.window.after(int(update_after), self._update_widget)

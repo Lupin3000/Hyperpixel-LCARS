@@ -69,4 +69,4 @@ class LcarsSquare(LcarsUi):
 
 
 if __name__ == '__main__':
-    LcarsSquare(fullscreen=False, verbose=3)
+    LcarsSquare(fullscreen=False, verbose=2)
