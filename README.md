@@ -77,3 +77,17 @@ If your application don't start automatically after reboot, verify correct fullp
 $ cat ~/.config/autostart/lcars.desktop | grep -i 'Exec*'
 Exec=/usr/bin/python3 /home/pi/Hyperpixel-LCARS/src/FILE
 ```
+
+## Examples:
+
+### Rectangle
+
+![](img/example_rectangle.png)
+
+### Round
+
+![](img/example_round.png)
+
+### Square
+
+![](img/example_square.png)
